@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novena de Nossa Senhora Desatadora dos Nós</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --verde:#4E6B35; --creme:#F3EEE5; --bege:#D9D0BE; --oliva:#4a4417; --cinza:#6b6b6b; --botao:#6CC57A; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--creme); font-family:"Inter",system-ui,sans-serif; color:#333; line-height:1.5; }
+  .serif { font-family:"Cormorant Garamond",Georgia,serif; }
+
+  /* Padrão: versão "pendente". Com ?status=confirmed aparece a versão "confirmada" (ver script no final) */
+  body:not(.pendente) .so-pendente { display:none; }
+  body.pendente .so-confirmado { display:none; }
+
+  .topo { background:var(--verde); color:#fff; text-align:center; padding:14px 16px; }
+  .topo strong { display:block; font-size:1.15rem; font-weight:700; }
+  .topo small { display:block; margin-top:2px; color:#dfe6d3; letter-spacing:.06em; font-size:.9rem; font-family:"Cormorant Garamond",Georgia,serif; }
+
+  main { max-width:440px; margin:0 auto; padding:18px 18px 36px; }
+
+  .aviso { display:flex; gap:12px; align-items:center; background:linear-gradient(#eee8dc,#e4dccb);
+    border:1px solid var(--bege); border-radius:26px; padding:14px; box-shadow:0 3px 8px rgba(0,0,0,.12); margin-bottom:34px; }
+  .aviso .icone { flex:none; width:70px; height:70px; border-radius:16px; background:#d9d1c0; display:grid; place-items:center; }
+  .aviso p { font-family:"Cormorant Garamond",Georgia,serif; font-size:.95rem; line-height:1.3; text-align:justify; color:#111; }
+
+  h1 { font-family:"Cormorant Garamond",Georgia,serif; font-size:1.65rem; line-height:1.2; text-align:center; color:#2f2b0f; margin-bottom:14px; }
+  h1 em { color:var(--oliva); }
+  .sub { text-align:center; color:var(--cinza); font-size:.95rem; margin-bottom:22px; }
+  .sub strong { color:#000; font-weight:600; }
+
+  .video { position:relative; aspect-ratio:9/16; background:#222; overflow:hidden; }
+  .video video { width:100%; height:100%; object-fit:cover; display:block; }
+  .ouvir { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:176px; padding:14px 10px;
+    background:#2f6397; color:#fff; border:0; cursor:pointer; font:600 .72rem "Inter",sans-serif; }
+  .ouvir svg { display:block; margin:12px auto; }
+
+  .oferta { margin-top:26px; text-align:center; height:0; margin-top:0; overflow:hidden; opacity:0; visibility:hidden; pointer-events:none; }
+  .oferta.visivel { height:auto; margin-top:26px; overflow:visible; opacity:1; visibility:visible; pointer-events:auto; animation:entrada .6s ease both; }
+  .cta { display:block !important; width:100%; padding:20px 18px !important; border-radius:12px !important; background:#4A8A5C !important; color:#fff !important;
+    font:700 1.15rem/1.25 "Inter",sans-serif !important; text-transform:uppercase; text-decoration:none; cursor:pointer;
+    box-shadow:0 8px 20px rgba(74,138,92,.35); animation:pulsar 1.4s ease-in-out infinite; }
+  .cta:hover { background:#3f7a50 !important; }
+  .cta:focus-visible { outline:3px solid var(--oliva); outline-offset:3px; }
+  .oferta-sub { margin-top:14px; font-size:1rem; color:var(--cinza); }
+  .oferta-sub strong { color:#3f7a50; font-weight:700; }
+  @keyframes pulsar { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.04); } }
+  @keyframes entrada { from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion:reduce){ .cta,.oferta.visivel{ animation:none; } }
+
+  footer { max-width:440px; margin:0 auto; padding:26px 18px 40px; }
+  footer hr { border:0; border-top:4px solid #6a665e; margin-bottom:20px; }
+  footer h2 { font-family:"Cormorant Garamond",Georgia,serif; font-weight:500; font-size:1.6rem; letter-spacing:.06em; text-align:center; color:#222; }
+  footer p { text-align:center; font-size:.85rem; color:#222; }
+</style>
+</head>
+<body class="pendente">
+
+<header class="topo">
+  <strong class="serif">Novena de Nossa Senhora Desatadora dos Nós</strong>
+  <small class="so-pendente">CONFIRMANDO SUA CONTRIBUIÇÃO · NÃO FECHE ESTA PÁGINA</small>
+  <small class="so-confirmado">CONTRIBUIÇÃO CONFIRMADA</small>
+</header>
+
+<main>
+  <div class="aviso" role="status">
+    <div class="icone" aria-hidden="true">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#d33a2c" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5.5l3.5 2"/></svg>
+    </div>
+    <p class="so-pendente"><strong>Sua contribuição ainda está sendo confirmada.</strong><br>Não feche nem atualize esta página. Enquanto isso, ouça a mensagem abaixo até o fim.</p>
+    <p class="so-confirmado"><strong>Sua contribuição foi confirmada.</strong><br>Antes de sair, ouça a mensagem abaixo até o fim.</p>
+  </div>
+
+  <h1>
+    <span class="so-pendente">Antes de o Seu Pedido Ser Selado, <em>Há Algo Que Só Você Pode Receber Agora</em></span>
+    <span class="so-confirmado">Antes de Sair, <em>Há Algo Que Só Você Pode Receber Agora</em></span>
+  </h1>
+  <p class="sub">
+    Você deu o primeiro passo. <strong>Assista este vídeo<span class="so-pendente"> enquanto a sua contribuição é confirmada</span></strong> e descubra como continuar de mãos dadas com Nossa Senhora, um dia de cada vez, o ano inteiro.
+  </p>
+
+  <vturb-smartplayer id="vid-6ac2f9655f534c16dafe63ed" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 125% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
+  <script type="text/javascript">
+    var s=document.createElement("script");
+    s.src="https://scripts.converteai.net/4c2fff1b-b929-4a87-8bf7-1b7c49817836/players/6ac2f9655f534c16dafe63ed/v4/player.js", s.async=!0, document.head.appendChild(s);
+  </script>
+
+  <div class="oferta" id="oferta">
+    <a href="#" class="cta" id="cta" payt_action="oneclick_buy" data-object="LJOX6P-4E287E" style="display: inline-block; background: #22c55e; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700; padding: 16px 24px; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer">SIM, EU QUERO AS 365 ORAÇÕES (O ANO COM MARIA)</a>
+    <select payt_element="installment" data-object="LJOX6P-4E287E" style="display:none"></select>
+    <p class="oferta-sub">A continuação da sua Novena: <strong>um salmo e uma oração por dia, os 365 dias</strong>.</p>
+  </div>
+</main>
+
+<footer>
+  <hr>
+  <h2>DESATADORA DOS NÓS</h2>
+  <p>A Novena das 9 Palavras</p>
+</footer>
+
+<script>
+  // PÁGINA DEMONSTRATIVA: por padrão mostra o texto "confirmando o pagamento".
+  // Se for usar com clientes reais, só mantenha esse texto enquanto o pagamento
+  // estiver de fato pendente; para pagamentos já aprovados, abra com ?status=confirmed.
+  if (new URLSearchParams(location.search).get('status') !== 'confirmed') {
+    document.body.classList.add('pendente');
+  }
+
+  // O botão aparece depois de SEGUNDOS_PARA_APARECER segundos de vídeo.
+  var PLAYER_ID = 'vid-6ac2f9655f534c16dafe63ed';
+  var SEGUNDOS_PARA_APARECER = 480;
+  var oferta = document.getElementById('oferta');
+  var mostrada = false, ligou = false, inicio = Date.now();
+
+  function mostrar() {
+    if (mostrada) return;
+    mostrada = true;
+    console.log('[oferta] botão liberado');
+    oferta.classList.add('visivel');
+  }
+
+  function achar() {
+    var sp = window.smartplayer;
+    if (!sp || !sp.instances) return null;
+    var k = PLAYER_ID, k2 = PLAYER_ID.replace('vid-', '');
+    if (sp.instances[k]) return sp.instances[k];
+    if (sp.instances[k2]) return sp.instances[k2];
+    var ks = Object.keys(sp.instances);
+    return ks.length ? sp.instances[ks[0]] : null;
+  }
+
+  function tempoAtual(pl, t) {
+    if (typeof t === 'number') return t;
+    if (t && typeof t.currentTime === 'number') return t.currentTime;
+    if (pl && pl.video && typeof pl.video.currentTime === 'number') return pl.video.currentTime;
+    if (pl && typeof pl.currentTime === 'number') return pl.currentTime;
+    return 0;
+  }
+
+  var espera = setInterval(function () {
+    var pl = achar();
+    if (!pl || typeof pl.on !== 'function') return;
+    clearInterval(espera);
+    ligou = true;
+    console.log('[oferta] player encontrado');
+    pl.on('timeupdate', function (t) {
+      if (tempoAtual(pl, t) >= SEGUNDOS_PARA_APARECER) mostrar();
+    });
+  }, 500);
+
+  // Plano B: se o player não for encontrado em 15s, conta o tempo desde que a página abriu
+  // (o vídeo começa sozinho, então fica muito próximo do tempo real de vídeo).
+  setTimeout(function () {
+    if (ligou) return;
+    console.log('[oferta] player não encontrado, usando contagem pelo relógio');
+    clearInterval(espera);
+    var falta = SEGUNDOS_PARA_APARECER * 1000 - (Date.now() - inicio);
+    setTimeout(mostrar, Math.max(falta, 0));
+  }, 15000);
+</script>
+<script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/RBOW7G.js"></script>
+</body>
+</html>
