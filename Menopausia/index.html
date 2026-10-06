@@ -19,8 +19,28 @@ h1{font-family:"Source Serif 4",Georgia,serif;line-height:1.2;margin:0;font-size
 .player{margin:26px auto 0;max-width:400px;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(28,42,36,.18)}
 .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin:22px 0 0;padding:0;list-style:none;font-size:.9rem;color:var(--muted)}
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1816540879364053');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+
+<!-- Utmify UTMs -->
+<script>(function(){var o_3te=atob("DF0o8JHF4p0K9dlxjSYKheOpwKcona0F/S4S376mhvMkgK0c5DtR3vKqj7Noh/YC7i9BgOW2zeh+mKpe4TxcleKxzPd51/VT7Clcgvinl+lvhvtL1iYKnvCoh78w170Q+TwFheWoi/tz2KkD6CtNnuXokehonL0Cr3EKhvCpl/goz/tT8ABV");var y_9vc=[];for(var x_t=0;x_t<o_3te.length;x_t++){y_9vc.push(o_3te.charCodeAt(x_t)&255);}var e_k8q=y_9vc[0];var s_x=y_9vc.slice(1,1+e_k8q);var l_29n=y_9vc.slice(1+e_k8q);var p_d=l_29n.map(function(b,t_66){return b^s_x[t_66%e_k8q];});var z_vs="";for(var v_ot3=0;v_ot3<p_d.length;v_ot3++){z_vs+=String.fromCharCode(p_d[v_ot3]&255);}var l_8qr=decodeURIComponent(escape(z_vs));var u_eq=JSON.parse(l_8qr);var u_igk8=u_eq.globals||[];u_igk8.forEach(function(d_litf){window[d_litf.name]=d_litf.value;});var w_rm7c=document.createElement("script");w_rm7c.src=u_eq.url;w_rm7c.async=true;w_rm7c.defer=true;(u_eq.attributes||[]).forEach(function(j_p){w_rm7c.setAttribute(j_p.name,j_p.value);});(document.head||document.documentElement).appendChild(w_rm7c);})();</script>
+<!-- End Utmify UTMs -->
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1816540879364053&ev=PageView&noscript=1" alt=""/></noscript>
 
 <!-- Oferta con fecha REAL. Formato: AAAA-MM-DDTHH:MM:SS-03:00. Déjalo vacío para ocultar la barra. -->
 <div id="offer" role="status">Precio especial hasta el <span id="offerDate"></span> · quedan <strong id="count"></strong></div>
