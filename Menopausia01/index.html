@@ -75,6 +75,7 @@ fbq('init','1816540879364053');fbq('track','PageView');
       <li>✔ Envío con seguimiento</li>
       <li>✔ Garantía de devolución</li>
     </ul>
+    <p class="legal">Este producto es un complemento de uso tradicional. No sustituye la orientación de tu médico.</p>
   </div>
 </header>
 
@@ -83,9 +84,18 @@ fbq('init','1816540879364053');fbq('track','PageView');
   <div id="msgs" aria-live="polite"></div>
 </section>
 
+<div class="demo" id="demoFlag">Prototipo: datos ficticios</div>
 
 <script>
 /* ============ CONFIGURACIÓN ============ */
+// true  = prototipo: contador y comentarios de EJEMPLO (ficticios)
+// false = versión publicada: solo se muestra lo que pongas en REAL_COMMENTS
+const DEMO = true;
+
+// Comentarios reales (con autorización de las personas). Se usan cuando DEMO = false.
+const REAL_COMMENTS = [
+  // { author: "Nombre", text: "Texto real del comentario", highlight: false }
+];
 
 // Barra de oferta con fecha real. Formato: "2026-10-31T23:59:00-03:00". Vacío = oculta.
 var OFFER_END = "";
