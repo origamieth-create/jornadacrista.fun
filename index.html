@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f8f5;--ink:#1c2a24;--muted:#5a6a62;--plum:#6b2d52}
+:root{--bg:#f5f8f5;--ink:#1c2a24;--muted:#5a6a62;--plum:#6b2d52;--leaf:#3eaf57;--line:#dde7df}
 *{box-sizing:border-box}
 body{margin:0;font-family:Figtree,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px}
 .wrap{max-width:640px;margin:0 auto;padding:0 20px}
@@ -16,6 +16,29 @@ h1{font-family:"Source Serif 4",Georgia,serif;line-height:1.2;margin:0;font-size
 #offer strong{font-variant-numeric:tabular-nums}
 .hero{padding:28px 0 40px;text-align:center}
 .sub{color:var(--muted);margin:14px auto 0;max-width:30em}
+
+/* contador de personas viendo (animado) */
+.viewers{display:none;align-items:center;gap:8px;margin:16px auto 0;padding:6px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.85rem;font-weight:700;color:var(--plum);box-shadow:0 4px 12px rgba(107,45,82,.12);animation:float 3s ease-in-out infinite}
+.viewers .dot{width:8px;height:8px;border-radius:50%;background:var(--leaf);animation:blink 1.2s infinite}
+.viewers span.n{font-variant-numeric:tabular-nums}
+@keyframes blink{50%{opacity:.35;transform:scale(.8)}}
+@keyframes float{50%{transform:translateY(-3px)}}
+
+/* comentarios */
+.chat{max-width:600px;margin:8px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px 16px 0 0;overflow:hidden;box-shadow:0 -4px 18px rgba(28,42,36,.07);animation:rise .8s ease-out both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.chat-h{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:2px solid rgba(107,45,82,.18);color:var(--plum);font-weight:700;font-size:.9rem}
+.chat-h small{color:var(--muted);font-weight:600}
+#msgs{height:360px;max-height:48vh;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+.msg{padding:10px 12px;border:1px solid var(--line);border-left:4px solid var(--leaf);border-radius:12px;background:#fbfdfb;font-size:.9rem;animation:slide .4s ease-out}
+.msg.hl{background:#fbf4f8;border-left-color:var(--plum)}
+.who{font-weight:700;color:var(--plum);font-size:.85rem;margin-bottom:2px}
+.txt{line-height:1.45}
+@keyframes slide{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+
+.demo{position:fixed;left:8px;bottom:8px;z-index:50;background:#fff3cd;color:#664d03;font-size:11px;font-weight:700;padding:5px 9px;border-radius:8px;display:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+
 .player{margin:26px auto 0;max-width:400px;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(28,42,36,.18)}
 .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin:22px 0 0;padding:0;list-style:none;font-size:.9rem;color:var(--muted)}
 </style>
@@ -51,6 +74,8 @@ src="https://www.facebook.com/tr?id=1816540879364053&ev=PageView&noscript=1"
     <h1>Un té natural para acompañar la menopausia</h1>
     <p class="sub">Endocrinólogos En Shock: Este "Té misterioso" es la Solución Para Aliviar Los Síntomas De la Menopausia En 2 Semanas</p>
 
+    <div class="viewers" id="viewers"><span class="dot"></span><span><span class="n" id="vcount">1.204</span> personas viendo este video</span></div>
+
     <div class="player">
       <vturb-smartplayer id="vid-6ac55cc708d8892062d49ee3" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 133.33333333333331% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
       <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/4c2fff1b-b929-4a87-8bf7-1b7c49817836/players/6ac55cc708d8892062d49ee3/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
@@ -63,6 +88,104 @@ src="https://www.facebook.com/tr?id=1816540879364053&ev=PageView&noscript=1"
     </ul>
   </div>
 </header>
+
+<section class="chat" id="chat" aria-label="Comentarios">
+  <div class="chat-h"><span>💬 Comentarios</span><small>Comunidad</small></div>
+  <div id="msgs" aria-live="polite"></div>
+</section>
+
+<script>
+/* ============ CONFIGURACIÓN ============ */
+// true  = prototipo: contador y comentarios de EJEMPLO (ficticios)
+// false = versión publicada: solo se muestra lo que pongas en REAL_COMMENTS
+const DEMO = true;
+
+// Comentarios reales (con autorización de las personas). Se usan cuando DEMO = false.
+const REAL_COMMENTS = [
+  // { author: "Nombre", text: "Texto real del comentario", highlight: false }
+];
+
+/* ============ DATOS DE EJEMPLO ============ */
+const names = ["María E.","Carmen R.","Lucía","Patricia M.","Rosa","Silvia","Claudia","Mónica","Gabriela","Elena","Marta S.","Ana Laura"];
+const generic = [
+  "Gracias por compartir este video 🙏",
+  "Lo estoy probando desde hace unas semanas, el sabor es suave",
+  "Me gusta tomarlo por la noche, es parte de mi rutina para relajarme",
+  "¿Tiene cafeína?",
+  "¿Cuánto tarda en llegar el envío?",
+  "Mi mamá también está pasando por esta etapa, le voy a mostrar el video",
+  "Lo tomo con un poquito de miel, queda rico",
+  "Me animó a cuidarme más, gracias",
+  "¿Se puede tomar si uso otros medicamentos? Voy a consultarlo con mi médica",
+  "Qué bueno hablar de este tema sin tabúes"
+];
+const buyers = ["Ya hice mi pedido 🙌","Pedido realizado, espero que llegue pronto","Lo compré para mi hermana también"];
+const scripted = [
+  {time:12, author:"Laura", text:"Hola a todas, estoy empezando a ver el video 👋"},
+  {time:40, author:"Teresa P.", text:"Llevo meses buscando opciones naturales para acompañar esta etapa", highlight:true},
+  {time:90, author:"Graciela", text:"Me gusta que aclaren que no sustituye al médico, eso da confianza"},
+  {time:200, author:"Beatriz", text:"Me gustaría saber más de los ingredientes 🌿"}
+];
+
+/* ============ LÓGICA ============ */
+const msgs = document.getElementById('msgs');
+function addComment(author, text, hl){
+  const d = document.createElement('div'); d.className = 'msg' + (hl ? ' hl' : '');
+  const a = document.createElement('div'); a.className = 'who'; a.textContent = author;
+  const t = document.createElement('div'); t.className = 'txt'; t.textContent = text;
+  d.append(a, t); msgs.appendChild(d);
+  while(msgs.children.length > 60) msgs.removeChild(msgs.firstChild);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+const pick = a => a[Math.floor(Math.random()*a.length)];
+
+// Tiempo real del video (VTurb)
+let maxT = 0, clockStart = null, elapsed = 0;
+function videoTime(){
+  const p = document.querySelector('vturb-smartplayer');
+  let v = p && (p.video || p.querySelector('video') || (p.shadowRoot && p.shadowRoot.querySelector('video')));
+  if(!v) v = document.querySelector('video');
+  return (v && typeof v.currentTime === 'number' && !isNaN(v.currentTime)) ? v.currentTime : null;
+}
+function getElapsed(){
+  const vt = videoTime();
+  if(vt !== null){ if(vt > maxT) maxT = vt; return Math.floor(maxT); }
+  return clockStart !== null ? Math.floor((Date.now()-clockStart)/1000) : 0;
+}
+const startClock = () => { if(clockStart === null) clockStart = Date.now(); };
+document.body.addEventListener('click', startClock, {once:true});
+document.body.addEventListener('touchstart', startClock, {once:true});
+
+if(DEMO){
+  document.getElementById('viewers').style.display = 'inline-flex';
+
+  [["Rosa","¡Buenas tardes a todas! 🌸"],["Carmen R.","Esperando que cargue el video"],["Lucía","Qué buen tema, gracias por hacerlo"]]
+    .forEach(x => addComment(x[0], x[1]));
+
+  const shown = new Set();
+  setInterval(() => {
+    elapsed = getElapsed();
+    scripted.forEach((c,i) => { if(elapsed >= c.time && !shown.has(i)){ shown.add(i); addComment(c.author, c.text, c.highlight); }});
+  }, 500);
+
+  setInterval(() => {
+    if(Math.random() > 0.25){
+      const arr = (elapsed > 600 && Math.random() > 0.6) ? buyers : generic;
+      addComment(pick(names), pick(arr));
+    }
+  }, 3500);
+
+  let viewers = 1204;
+  setInterval(() => {
+    viewers = Math.min(1380, Math.max(1100, viewers + Math.floor(Math.random()*9) - 4));
+    document.getElementById('vcount').textContent = viewers.toLocaleString('es');
+  }, 3000);
+} else if(REAL_COMMENTS.length){
+  REAL_COMMENTS.forEach(c => addComment(c.author, c.text, c.highlight));
+} else {
+  document.getElementById('chat').style.display = 'none';
+}
+</script>
 
 <script>
 // Oferta con fecha real (vacío = barra oculta)
