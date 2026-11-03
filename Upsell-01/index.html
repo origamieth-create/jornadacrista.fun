@@ -39,9 +39,8 @@
         .chamada-video p { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.05rem; line-height: 1.35; color: #111; }
         .chamada-video strong { color: var(--oliva); }
 
-        /* Bloco do Vídeo */
-        .video { position: relative; aspect-ratio: 9 / 16; background: #222; overflow: hidden; border-radius: 12px; margin-bottom: 22px; }
-        .video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        /* Bloco do Vídeo / Player VTurb */
+        .video-container { margin-bottom: 22px; border-radius: 12px; overflow: hidden; }
 
         /* Estilos do Formulário */
         .form-container { background: #fff; border: 1px solid var(--bege); border-radius: 16px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
@@ -71,19 +70,21 @@
 
         <!-- Chamada para Ação do Vídeo -->
         <div class="chamada-video">
-            <p>🙏 Você foi <strong>selecionada entre as primeiras</strong> para receber este conteúdo exclusivo. Assista ao vídeo com atenção antes de preencher os dados de envio.</p>
+            <p>🙏 Você foi <strong>selecionada entre as primeiras</strong> para receber este material exclusivo. Assista ao vídeo com atenção antes de preencher os dados de envio.</p>
         </div>
 
-        <!-- Bloco do Vídeo (Agora acima) -->
-        <div class="video">
-            <!-- Insira a tag do seu vídeo aqui -->
-            <video controls autoplay muted loop>
-                <source src="seu-video.mp4" type="video/mp4">
-                Seu navegador não suporta vídeos.
-            </video>
+        <!-- Player do VTurb -->
+        <div class="video-container">
+            <vturb-smartplayer id="vid-6ae9d6d56efe4af0391940cb" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 177.77777777777777% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
+            <script type="text/javascript">
+                var s=document.createElement("script");
+                s.src="https://scripts.converteai.net/4c2fff1b-b929-4a87-8bf7-1b7c49817836/players/6ae9d6d56efe4af0391940cb/v4/player.js";
+                s.async=!0;
+                document.head.appendChild(s);
+            </script>
         </div>
 
-        <!-- Formulário de Endereço (Agora abaixo do vídeo) -->
+        <!-- Formulário de Endereço (Abaixo do vídeo) -->
         <div class="form-container">
             <form id="formEndereco" onsubmit="salvarEndereco(event)">
                 <div class="form-group">
