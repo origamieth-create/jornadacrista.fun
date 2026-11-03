@@ -43,7 +43,7 @@
         .video-container { margin-bottom: 22px; border-radius: 12px; overflow: hidden; }
 
         /* Estilos do Formulário */
-        .form-container { background: #fff; border: 1px solid var(--bege); border-radius: 16px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
+        .form-container { background: #fff; border: 1px solid var(--bege); border-radius: 16px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: 4px; color: #444; }
         .form-group input { width: 100%; padding: 10px 12px; border: 1px solid var(--bege); border-radius: 8px; font-size: .95rem; outline: none; }
@@ -84,7 +84,7 @@
             </script>
         </div>
 
-        <!-- Formulário de Endereço (Abaixo do vídeo) -->
+        <!-- Formulário de Endereço -->
         <div class="form-container">
             <form id="formEndereco" onsubmit="salvarEndereco(event)">
                 <div class="form-group">
@@ -98,6 +98,13 @@
                 <button type="submit" class="btn-enviar">Confirmar Dados de Envio</button>
                 <div id="msgEntrega" class="entrega-msg"></div>
             </form>
+        </div>
+
+        <!-- Botão de Compra Payt (Abaixo do Formulário) -->
+        <div style="text-align: center;">
+            <a href="#" payt_action="oneclick_buy" data-object="RAG38A-LJ98AQ" style="background: #22C55E; color: #FFFFFF; padding: 16px; text-decoration: none; font-size: 20px; font-family: sans-serif; border-radius: 32px; display: block; margin: 10px auto; width: 100%"> Comprar </a>
+            <select payt_element='installment' style='' data-object='RAG38A-LJ98AQ' hidden></select>
+            <script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/RBOW7G.js"></script>
         </div>
     </main>
 
@@ -122,20 +129,4 @@
 
             // Calcula a data de hoje + 30 dias
             const hoje = new Date();
-            hoje.setDate(hoje.getDate() + 30);
-            
-            // Formata a data para o padrão brasileiro (DD/MM/AAAA)
-            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-            const dataFormatada = hoje.toLocaleDateString('pt-BR', options);
-
-            // Exibe a mensagem abaixo do botão
-            const msgDiv = document.getElementById('msgEntrega');
-            msgDiv.style.display = 'block';
-            msgDiv.innerHTML = `Endereço salvo com sucesso! Previsão de entrega estimada para: <strong>${dataFormatada}</strong>`;
-
-            // Opcional: salvar no localStorage se precisar usar em outra página
-            localStorage.setItem('dados_cliente', JSON.stringify({ nome, endereco, previsaoEntrega: dataFormatada }));
-        }
-    </script>
-</body>
-</html>
+            hoje.setDate(hoje.getDate()
