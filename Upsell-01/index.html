@@ -82,7 +82,7 @@
             </script>
         </div>
 
-        <!-- Formulário de Endereço (Sem botão interno) -->
+        <!-- Formulário de Endereço -->
         <div class="form-container">
             <form id="formEndereco">
                 <div class="form-group">
@@ -94,14 +94,14 @@
                     <input type="text" id="endereco" required placeholder="Rua, número, bairro, cidade - UF, CEP">
                 </div>
             </form>
-            <div id="msgEntrega" class="entrega-msg"></div>
         </div>
 
-        <!-- Botão de Compra Payt (Abaixo do Formulário) -->
+        <!-- Botão de Compra Payt e Mensagem de Entrega Logo Abaixo -->
         <div style="text-align: center;">
             <a href="#" payt_action="oneclick_buy" data-object="RAG38A-LJ98AQ" onclick="capturarDados(event)" style="background: #22C55E; color: #FFFFFF; padding: 16px; text-decoration: none; font-size: 20px; font-family: sans-serif; border-radius: 32px; display: block; margin: 10px auto; width: 100%"> Confirmar Dados de Envio </a>
             <select payt_element='installment' style='' data-object='RAG38A-LJ98AQ' hidden></select>
             <script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/RBOW7G.js"></script>
+            <div id="msgEntrega" class="entrega-msg"></div>
         </div>
     </main>
 
@@ -141,7 +141,7 @@
             const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
             const dataFormatada = hoje.toLocaleDateString('pt-BR', options);
 
-            // Exibe a mensagem de confirmação abaixo do formulário
+            // Exibe a mensagem de confirmação abaixo do botão da Payt
             const msgDiv = document.getElementById('msgEntrega');
             msgDiv.style.display = 'block';
             msgDiv.innerHTML = `Endereço salvo com sucesso! Previsão de entrega estimada para: <strong>${dataFormatada}</strong>`;
