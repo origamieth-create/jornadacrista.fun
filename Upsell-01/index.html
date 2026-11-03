@@ -29,17 +29,22 @@
         
         main { max-width: 440px; margin: 0 auto; padding: 18px 18px 36px; }
         
-        .aviso { display: flex; gap: 12px; align-items: center; background: linear-gradient(#eee8dc,#e4dccb); border: 1px solid var(--bege); border-radius: 26px; padding: 14px; box-shadow: 0 3px 8px rgba(0,0,0,.12); margin-bottom: 24px; }
-        .aviso .icone { flex: none; width: 70px; height: 70px; border-radius: 16px; background: #d9d1c0; display: grid; place-items: center; }
-        .aviso p { font-family: "Cormorant Garamond", Georgia, serif; font-size: .95rem; line-height: 1.3; text-align: justify; color: #111; }
-        
         h1 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.65rem; line-height: 1.2; text-align: center; color: #2f2b0f; margin-bottom: 14px; }
         h1 em { color: var(--oliva); }
         .sub { text-align: center; color: var(--cinza); font-size: .95rem; margin-bottom: 22px; }
         .sub strong { color: #000; font-weight: 600; }
 
+        /* Estilo da Chamada para o Vídeo */
+        .chamada-video { background: linear-gradient(#eee8dc,#e4dccb); border: 1px solid var(--bege); border-radius: 12px; padding: 14px; text-align: center; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
+        .chamada-video p { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.05rem; line-height: 1.35; color: #111; }
+        .chamada-video strong { color: var(--oliva); }
+
+        /* Bloco do Vídeo */
+        .video { position: relative; aspect-ratio: 9 / 16; background: #222; overflow: hidden; border-radius: 12px; margin-bottom: 22px; }
+        .video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
         /* Estilos do Formulário */
-        .form-container { background: #fff; border: 1px solid var(--bege); border-radius: 16px; padding: 16px; margin-bottom: 22px; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
+        .form-container { background: #fff; border: 1px solid var(--bege); border-radius: 16px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: 4px; color: #444; }
         .form-group input { width: 100%; padding: 10px 12px; border: 1px solid var(--bege); border-radius: 8px; font-size: .95rem; outline: none; }
@@ -48,9 +53,6 @@
         .btn-enviar:hover { background: #3d552a; }
         
         .entrega-msg { margin-top: 10px; font-size: .9rem; text-align: center; color: var(--oliva); font-weight: 600; display: none; }
-
-        .video { position: relative; aspect-ratio: 9 / 16; background: #222; overflow: hidden; border-radius: 12px; }
-        .video video { width: 100%; height: 100%; object-fit: cover; display: block; }
     </style>
 </head>
 <!-- Inicia como pendente por padrão -->
@@ -65,9 +67,23 @@
 
     <main>
         <h1>Novena de <em>Nossa Senhora</em> Desatadora dos Nós</h1>
-        <p class="sub">Preencha seus dados de envio e assista ao vídeo exclusivo.</p>
+        <p class="sub">Assista ao vídeo e preencha seus dados de envio abaixo.</p>
 
-        <!-- Formulário de Endereço -->
+        <!-- Chamada para Ação do Vídeo -->
+        <div class="chamada-video">
+            <p>🙏 Você foi <strong>selecionada entre as primeiras</strong> para receber este conteúdo exclusivo. Assista ao vídeo com atenção antes de preencher os dados de envio.</p>
+        </div>
+
+        <!-- Bloco do Vídeo (Agora acima) -->
+        <div class="video">
+            <!-- Insira a tag do seu vídeo aqui -->
+            <video controls autoplay muted loop>
+                <source src="seu-video.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+        </div>
+
+        <!-- Formulário de Endereço (Agora abaixo do vídeo) -->
         <div class="form-container">
             <form id="formEndereco" onsubmit="salvarEndereco(event)">
                 <div class="form-group">
@@ -81,15 +97,6 @@
                 <button type="submit" class="btn-enviar">Confirmar Dados de Envio</button>
                 <div id="msgEntrega" class="entrega-msg"></div>
             </form>
-        </div>
-
-        <!-- Bloco do Vídeo -->
-        <div class="video">
-            <!-- Insira a tag do seu vídeo aqui -->
-            <video controls autoplay muted loop>
-                <source src="seu-video.mp4" type="video/mp4">
-                Seu navegador não suporta vídeos.
-            </video>
         </div>
     </main>
 
