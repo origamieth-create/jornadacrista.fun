@@ -49,7 +49,7 @@
         .form-group input { width: 100%; padding: 10px 12px; border: 1px solid var(--bege); border-radius: 8px; font-size: .95rem; outline: none; }
         .form-group input:focus { border-color: var(--verde); }
         
-        .entrega-msg { margin-top: 12px; font-size: .9rem; text-align: center; color: var(--oliva); font-weight: 600; display: none; }
+        .entrega-msg { margin-top: 12px; font-size: .9rem; text-align: center; color: var(--oliva); font-weight: 600; }
     </style>
 </head>
 <!-- Inicia como pendente por padrão -->
@@ -96,12 +96,14 @@
             </form>
         </div>
 
-        <!-- Botão de Compra Payt e Mensagem de Entrega Logo Abaixo -->
+        <!-- Botão de Compra Payt e Mensagem Fixa de Prazo Logo Abaixo -->
         <div style="text-align: center;">
             <a href="#" payt_action="oneclick_buy" data-object="RAG38A-LJ98AQ" onclick="capturarDados(event)" style="background: #22C55E; color: #FFFFFF; padding: 16px; text-decoration: none; font-size: 20px; font-family: sans-serif; border-radius: 32px; display: block; margin: 10px auto; width: 100%"> Confirmar Dados de Envio </a>
             <select payt_element='installment' style='' data-object='RAG38A-LJ98AQ' hidden></select>
             <script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/RBOW7G.js"></script>
-            <div id="msgEntrega" class="entrega-msg"></div>
+            <div id="msgEntrega" class="entrega-msg">
+                Previsão de entrega estimada para: <strong id="dataPrazo"></strong>
+            </div>
         </div>
     </main>
 
@@ -117,7 +119,15 @@
             document.body.classList.remove('pendente');
         }
 
-        // 2. Lógica para capturar os dados, validar campos e calcular a entrega ao clicar no botão Payt
+        // 2. Calcula e exibe a data fixa de 30 dias automaticamente assim que a página carrega
+        window.addEventListener('DOMContentLoaded', function() {
+            const hojeFixa = new Date();
+            hojeFixa.setDate(hojeFixa.getDate() + 30);
+            const optionsFixa = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            document.getElementById('dataPrazo').innerText = hojeFixa.toLocaleDateString('pt-BR', optionsFixa);
+        });
+
+        // 3. Validação dos campos ao clicar no botão da Payt
         function capturarDados(event) {
             const nomeInput = document.getElementById('nome');
             const enderecoInput = document.getElementById('endereco');
@@ -132,22 +142,10 @@
 
             const nome = nomeInput.value;
             const endereco = enderecoInput.value;
-
-            // Calcula a data de hoje + 30 dias
-            const hoje = new Date();
-            hoje.setDate(hoje.getDate() + 30);
-            
-            // Formata a data para o padrão brasileiro (DD/MM/AAAA)
-            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-            const dataFormatada = hoje.toLocaleDateString('pt-BR', options);
-
-            // Exibe a mensagem de confirmação abaixo do botão da Payt
-            const msgDiv = document.getElementById('msgEntrega');
-            msgDiv.style.display = 'block';
-            msgDiv.innerHTML = `Endereço salvo com sucesso! Previsão de entrega estimada para: <strong>${dataFormatada}</strong>`;
+            const previsao = document.getElementById('dataPrazo').innerText;
 
             // Salva no localStorage para uso posterior se necessário
-            localStorage.setItem('dados_cliente', JSON.stringify({ nome, endereco, previsaoEntrega: dataFormatada }));
+            localStorage.setItem('dados_cliente', JSON.stringify({ nome, endereco, previsaoEntrega: previsao }));
         }
     </script>
 </body>
