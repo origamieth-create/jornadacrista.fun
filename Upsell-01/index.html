@@ -48,10 +48,8 @@
         .form-group label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: 4px; color: #444; }
         .form-group input { width: 100%; padding: 10px 12px; border: 1px solid var(--bege); border-radius: 8px; font-size: .95rem; outline: none; }
         .form-group input:focus { border-color: var(--verde); }
-        .btn-enviar { width: 100%; background: var(--verde); color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background .2s; }
-        .btn-enviar:hover { background: #3d552a; }
         
-        .entrega-msg { margin-top: 10px; font-size: .9rem; text-align: center; color: var(--oliva); font-weight: 600; display: none; }
+        .entrega-msg { margin-top: 12px; font-size: .9rem; text-align: center; color: var(--oliva); font-weight: 600; display: none; }
     </style>
 </head>
 <!-- Inicia como pendente por padrão -->
@@ -84,9 +82,9 @@
             </script>
         </div>
 
-        <!-- Formulário de Endereço -->
+        <!-- Formulário de Endereço (Sem botão interno) -->
         <div class="form-container">
-            <form id="formEndereco" onsubmit="salvarEndereco(event)">
+            <form id="formEndereco">
                 <div class="form-group">
                     <label for="nome">Nome Completo</label>
                     <input type="text" id="nome" required placeholder="Digite seu nome completo">
@@ -95,14 +93,13 @@
                     <label for="endereco">Endereço Completo</label>
                     <input type="text" id="endereco" required placeholder="Rua, número, bairro, cidade - UF, CEP">
                 </div>
-                <button type="submit" class="btn-enviar">Confirmar Dados de Envio</button>
-                <div id="msgEntrega" class="entrega-msg"></div>
             </form>
+            <div id="msgEntrega" class="entrega-msg"></div>
         </div>
 
         <!-- Botão de Compra Payt (Abaixo do Formulário) -->
         <div style="text-align: center;">
-            <a href="#" payt_action="oneclick_buy" data-object="RAG38A-LJ98AQ" style="background: #22C55E; color: #FFFFFF; padding: 16px; text-decoration: none; font-size: 20px; font-family: sans-serif; border-radius: 32px; display: block; margin: 10px auto; width: 100%"> Comprar </a>
+            <a href="#" payt_action="oneclick_buy" data-object="RAG38A-LJ98AQ" onclick="capturarDados(event)" style="background: #22C55E; color: #FFFFFF; padding: 16px; text-decoration: none; font-size: 20px; font-family: sans-serif; border-radius: 32px; display: block; margin: 10px auto; width: 100%"> Confirmar Dados de Envio </a>
             <select payt_element='installment' style='' data-object='RAG38A-LJ98AQ' hidden></select>
             <script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/RBOW7G.js"></script>
         </div>
@@ -120,13 +117,38 @@
             document.body.classList.remove('pendente');
         }
 
-        // 2. Lógica do formulário e cálculo de 30 dias para a entrega estimada
-        function salvarEndereco(event) {
-            event.preventDefault();
-            
-            const nome = document.getElementById('nome').value;
-            const endereco = document.getElementById('endereco').value;
+        // 2. Lógica para capturar os dados, validar campos e calcular a entrega ao clicar no botão Payt
+        function capturarDados(event) {
+            const nomeInput = document.getElementById('nome');
+            const enderecoInput = document.getElementById('endereco');
+
+            // Valida se o usuário preencheu os campos do formulário antes de prosseguir
+            if (!nomeInput.value.trim() || !enderecoInput.value.trim()) {
+                alert('Por favor, preencha seu Nome e Endereço completo antes de continuar.');
+                nomeInput.focus();
+                event.preventDefault(); // Impede a ação do botão caso esteja vazio
+                return;
+            }
+
+            const nome = nomeInput.value;
+            const endereco = enderecoInput.value;
 
             // Calcula a data de hoje + 30 dias
             const hoje = new Date();
-            hoje.setDate(hoje.getDate()
+            hoje.setDate(hoje.getDate() + 30);
+            
+            // Formata a data para o padrão brasileiro (DD/MM/AAAA)
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            const dataFormatada = hoje.toLocaleDateString('pt-BR', options);
+
+            // Exibe a mensagem de confirmação abaixo do formulário
+            const msgDiv = document.getElementById('msgEntrega');
+            msgDiv.style.display = 'block';
+            msgDiv.innerHTML = `Endereço salvo com sucesso! Previsão de entrega estimada para: <strong>${dataFormatada}</strong>`;
+
+            // Salva no localStorage para uso posterior se necessário
+            localStorage.setItem('dados_cliente', JSON.stringify({ nome, endereco, previsaoEntrega: dataFormatada }));
+        }
+    </script>
+</body>
+</html>
