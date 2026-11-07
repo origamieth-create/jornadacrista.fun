@@ -56,6 +56,15 @@
   footer h2 { font-family:"Cormorant Garamond",Georgia,serif; font-weight:500; font-size:1.6rem; letter-spacing:.06em; text-align:center; color:#222; }
   footer p { text-align:center; font-size:.85rem; color:#222; }
 </style>
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+<script>
+  window.pixelId = "6ac1121f3a56405532a78ef2";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
 </head>
 <body class="pendente">
 
@@ -89,8 +98,8 @@
   </script>
 
   <div class="oferta" id="oferta">
-    <a href="#" class="cta" id="cta" payt_action="oneclick_buy" data-object="LJOX6P-4E287E" style="display: inline-block; background: #22c55e; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700; padding: 16px 24px; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer">SIM, EU QUERO AS 365 ORAÇÕES (O ANO COM MARIA)</a>
-    <select payt_element="installment" data-object="LJOX6P-4E287E" style="display:none"></select>
+    <button type="button" class="cta kirvano-payment-trigger" id="cta" style="display: inline-block; background: #22c55e; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700; padding: 16px 24px; border-radius: 8px; text-decoration: none; text-align: center; cursor: pointer; border:0">SIM, EU QUERO AS 365 ORAÇÕES (O ANO COM MARIA)</button>
+    <p style="text-align:center;margin-top:14px"><a href="#" class="kirvano-refuse-trigger" style="color:#6a665e;font-size:.9rem;text-decoration:underline">Não, obrigado. Quero recusar esta oferta.</a></p>
     <p class="oferta-sub">A continuação da sua Novena: <strong>um salmo e uma oração por dia, os 365 dias</strong>.</p>
   </div>
 </main>
@@ -161,6 +170,11 @@
     setTimeout(mostrar, Math.max(falta, 0));
   }, 15000);
 </script>
-<script type="text/javascript" src="https://checkout.payt.com.br/multiple-oneclickbuyscript/RBOW7G.js"></script>
+<script>
+  var offer = "a95a0e5c-0298-4251-8559-238ddd2bcda5";
+  var nextPageURL = null;
+  var refusePageURL = "https://lp.jornadacrista.fun/Upsell-02/";
+</script>
+<script src="https://snippets.kirvano.com/upsell.min.js"></script>
 </body>
 </html>
